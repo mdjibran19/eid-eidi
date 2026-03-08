@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Luxury Eid Eidi</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+background:radial-gradient(circle,#020024,#000428,#004e92);
+color:white;
+text-align:center;
+overflow:hidden;
+}
+
+/* 3D Moon */
+
+.moon{
+width:120px;
+height:120px;
+background:radial-gradient(circle,#fff,#ddd);
+border-radius:50%;
+position:absolute;
+top:60px;
+left:50%;
+transform:translateX(-50%);
+box-shadow:0 0 50px #fff;
+animation:float 4s ease-in-out infinite;
+}
+
+@keyframes float{
+0%{transform:translate(-50%,0)}
+50%{transform:translate(-50%,20px)}
+100%{transform:translate(-50%,0)}
+}
+
+h1{
+margin-top:200px;
+font-size:50px;
+text-shadow:0 0 20px gold;
+}
+
+.options{
+margin-top:40px;
+}
+
+button{
+padding:18px 35px;
+margin:10px;
+font-size:20px;
+border:none;
+border-radius:12px;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+transform:scale(1.15);
+}
+
+.lock{
+background:#444;
+color:white;
+}
+
+.pay{
+background:linear-gradient(45deg,gold,orange);
+color:black;
+box-shadow:0 0 20px gold;
+}
+
+/* QR BOX */
+
+#qrBox{
+position:fixed;
+bottom:-400px;
+left:50%;
+transform:translateX(-50%);
+background:white;
+color:black;
+padding:25px;
+border-radius:20px;
+box-shadow:0 0 40px black;
+transition:1s;
+}
+
+#qrBox img{
+width:220px;
+border-radius:10px;
+}
+
+#thank{
+display:none;
+font-size:28px;
+color:green;
+margin-top:10px;
+animation:pop 1s infinite alternate;
+}
+
+@keyframes pop{
+from{transform:scale(1)}
+to{transform:scale(1.2)}
+}
+
+/* Message Box */
+
+#msg{
+position:fixed;
+top:40%;
+left:50%;
+transform:translateX(-50%);
+font-size:30px;
+color:red;
+display:none;
+text-shadow:0 0 10px white;
+}
+
+/* Emojis */
+
+.emoji{
+position:absolute;
+font-size:35px;
+animation:fly 3s linear forwards;
+}
+
+@keyframes fly{
+0%{transform:translateY(0)}
+100%{transform:translateY(-500px);opacity:0}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="moon"></div>
+
+<h1>🌙 Eid Mubarak 🌙</h1>
+<h2>Select Your Eidi</h2>
+
+<div class="options">
+
+<button class="lock" onclick="angry()">₹1</button>
+<button class="lock" onclick="angry()">₹50</button>
+<button class="lock" onclick="angry()">₹100</button>
+<button class="lock" onclick="angry()">₹200</button>
+
+<button class="pay" onclick="showQR()">₹500 🎁</button>
+
+</div>
+
+<div id="msg"><h1>😡 Kya yar malik, kuch to sharam karo!</h1></div>
+
+<div id="qrBox">
+
+<h3>Scan QR & Send Eidi</h3>
+
+<img src="Md.png.jpeg">
+
+<div id="thank">🎉 Thank You For Eidi ✨</div>
+
+</div>
+
+<script>
+
+/* 500 button */
+
+function showQR(){
+
+let box=document.getElementById("qrBox");
+box.style.bottom="70px";
+
+document.getElementById("thank").style.display="block";
+
+let emojis=["🎉","✨","🎁","💰","🌙"];
+
+for(let i=0;i<20;i++){
+
+let e=document.createElement("div");
+e.className="emoji";
+
+e.innerHTML=emojis[Math.floor(Math.random()*emojis.length)];
+
+e.style.left=Math.random()*window.innerWidth+"px";
+e.style.bottom="0px";
+
+document.body.appendChild(e);
+
+setTimeout(()=>{e.remove()},3000);
+
+}
+
+}
+
+/* Angry buttons */
+
+function angry(){
+
+let msg=document.getElementById("msg");
+msg.style.display="block";
+
+let e=document.createElement("div");
+e.className="emoji";
+e.innerHTML="😡";
+
+e.style.left=Math.random()*window.innerWidth+"px";
+e.style.bottom="0px";
+
+document.body.appendChild(e);
+
+setTimeout(()=>{
+
+msg.style.display="none";
+e.remove();
+
+},2000);
+
+}
+
+</script>
+
+</body>
+</html>
